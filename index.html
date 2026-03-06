@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Calipers Simulator | Vernier Caliper Simulator</title>
+ 
+    <style>
+
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:sans-serif;
+    }
+
+    html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#050505;
+    }
+
+    /* Container */
+
+    .container{
+    width:100%;
+    height:100%;
+    position:relative;
+    }
+
+    /* iframe */
+
+    iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    }
+
+    /* Loader Screen */
+
+    #loader{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#050505;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:20;
+    color:white;
+    }
+
+    /* Profile + Ring */
+
+    .profileBox{
+
+    position:relative;
+
+    width:170px;
+    height:170px;
+
+    margin-bottom:25px;
+
+    }
+
+    /* Rotating Gradient Ring */
+
+    .profileBox::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-6px;
+    left:-6px;
+    right:-6px;
+    bottom:-6px;
+
+    border-radius:50%;
+
+    background:conic-gradient(
+    #00e5ff,
+    #00ff9d,
+    #ff00ff,
+    #ffaa00,
+    #00e5ff
+    );
+
+    animation:spin 1.2s linear infinite;
+
+    }
+
+    /* Inner Circle */
+
+    .profileBox::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:6px;
+
+    background:#050505;
+
+    border-radius:50%;
+
+    z-index:1;
+
+    }
+
+    /* Profile Image */
+
+    .profile{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    z-index:2;
+
+    }
+
+    /* Spin Animation */
+
+    @keyframes spin{
+
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+
+    }
+
+    /* Name */
+
+    .name{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
+    color:#00e5ff;
+
+    margin-bottom:8px;
+
+    }
+
+    /* Loading Text */
+
+    .loading{
+
+    font-size:14px;
+
+    opacity:0.8;
+
+    }
+
+    /* Glass Button */
+
+    .controls{
+
+    position:absolute;
+
+    bottom:25px;
+    right:25px;
+
+    z-index:30;
+
+    }
+
+    .btn{
+
+    width:55px;
+    height:55px;
+
+    border-radius:16px;
+
+    border:none;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+
+    transition:0.25s;
+
+    }
+
+    .btn:hover{
+
+    transform:scale(1.1);
+
+    background:#00e5ff;
+
+    color:black;
+
+    }
+
+    </style>
+    </head>
+    <body>
+    <div class="container"><div id="loader"><div class="profileBox"><img class="profile" src="https://raw.githubusercontent.com/mdmahafuzarrahmanmaruf/image/refs/heads/main/20251216_161924.jpg"></div><div class="name">
+    𝐌𝘋 𝐌αhαƒuzαr 𝐑αhmαη 𝐌αruƒ
+    </div><div class="loading">
+    Loading Simulation...
+    </div></div><iframe
+    id="simFrame"
+    src="https://simphy.com/view_simulation?vernier-caliper&193"
+    onload="hideLoader()">
+    </iframe><div class="controls"><button class="btn" onclick="refreshSim()">🔄</button>
+
+    </div></div><script>
+
+    function hideLoader(){
+
+    document.getElementById("loader").style.display="none";
+
+    }
+
+    function refreshSim(){
+
+    document.getElementById("loader").style.display="flex";
+
+    let frame=document.getElementById("simFrame");
+
+    frame.src=frame.src;
+
+    }
+
+    </script>
+    </body>
+</html>
